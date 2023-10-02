@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import ProjectsPage from './projects/ProjectsPage';
 
 function App() {
   return (
@@ -22,6 +23,10 @@ function App() {
           Hello world!
         </h1>
       </header>
+      {/* <body  className="@apply bg-[#a4c1fa] min-h-screen flex flex-col items-center justify-center text-[calc(10px_+_2vmin)] text-[white]"> */}
+        <div className="App-body">
+          <ProjectsPage />
+        </div>
     </div>
   );
 }
