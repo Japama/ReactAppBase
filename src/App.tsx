@@ -1,33 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import { AuthProvider, useAuth } from './AuthContext';
 import ProjectsPage from './projects/ProjectsPage';
+import SignInSide from './login/SignInSide';
+import Header from './templates/Header';
+import Footer from './templates/Footer';
+import Body from './templates/body';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React Pelele
-        </a>
-        <h1 className="text-3xl font-bold underline">
-          Hello world!
-        </h1>
-      </header>
-      {/* <body  className="@apply bg-[#a4c1fa] min-h-screen flex flex-col items-center justify-center text-[calc(10px_+_2vmin)] text-[white]"> */}
-        <div className="App-body">
-          <ProjectsPage />
+    <AuthProvider>
+      <div className="flex flex-col h-screen App">
+        <div className='Header fixed w-full top-0 z-10'>
+          <Header />
         </div>
-    </div>
+        <div className='Body flex-1 bg-gray-300 z-0'>
+        <Body />
+        </div>
+        <div className='Footer fixed w-full bottom-0 z-10'>
+          <Footer />
+        </div>
+      </div>
+    </AuthProvider>
   );
 }
 
