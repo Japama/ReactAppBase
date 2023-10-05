@@ -24,27 +24,13 @@ export default function SignInSide() {
     const handleSubmit = async (event: React.FormEvent): Promise<void> => {
         event.preventDefault();
 
-        // Realiza una solicitud POST al servidor para el inicio de sesión
         try {
-            const response = await fetch('http://localhost:8081/api/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData), // Envía las credenciales
-            });
-
-            if (response.ok) {
-                // El inicio de sesión es correcto
-                login(); // Llama a la función de inicio de sesión del contexto de autenticación
-            } else {
-                // El inicio de sesión falló, muestra un mensaje de error
-                setError('Credenciales incorrectas');
-            }
-        } catch (error) {
-            console.error('Error al iniciar sesión', error);
-            setError('Error al iniciar sesión');
-        }
+            const response = await login(formData); // Llama a la función de inicio de sesión del contexto
+      
+            // Realiza cualquier lógica adicional después del inicio de sesión exitoso
+          } catch (error) {
+            // Lógica para manejar errores
+          }
     };
 
     return (
