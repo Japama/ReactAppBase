@@ -11,13 +11,13 @@ function App() {
   return (
     <AuthProvider>
       <div className="flex flex-col h-screen App">
-        <div className='Header fixed w-full top-0 z-10'>
+        <div className='Header'>
           <Header />
         </div>
-        <div className='Body flex-1 bg-gray-300 z-0'>
+        <div className='Body '>
         <Body />
         </div>
-        <div className='Footer fixed w-full bottom-0 z-10'>
+        <div className='Footer'>
           <Footer />
         </div>
       </div>

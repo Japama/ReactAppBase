@@ -21,15 +21,15 @@ function Header() {
   };
 
   return (
-    <header className="flex h-20 bg-blue-500 p-4">
+    <header className="flex h-20 bg-blue-500 p-4 fixed w-full top-0 z-10">
       <div className="container mx-auto flex justify-between items-center">
         <h1 className="text-white text-2xl font-bold">Sports Guide</h1>
         <h2 className="text-white font-bold">Tu guía del entrenador</h2>
         {state.isLoggedIn ? (
-          <div>
-            <h2 className="text-white font-bold">Bienvenido {state.username}</h2>
+          <div className=' flex  items-center'>
+            <h2 className="flex text-white font-bold">Bienvenido {state.username}</h2>
             <button type="button"
-              className="border border-red-500 bg-red-500 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-red-600 focus:outline-none focus:shadow-outline"
+              className="flex border border-red-500 bg-red-500 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-red-600 focus:outline-none focus:shadow-outline"
               onClick={() => { handleClick(); }}>
               Logout
             </button>

@@ -4,6 +4,7 @@ import ProjectsPage from '../projects/ProjectsPage';
 import SignInSide from '../login/SignInSide';
 import { Activity } from '../activities/Activity';
 import ActivityCard from '../activities/ActivityCard';
+import ActivitiesPage from '../activities/ActivitiesPage';
 
 function Body() {
   const { state, login, logout } = useAuth();
@@ -25,11 +26,9 @@ function Body() {
     <div className=''>
       {state.isLoggedIn ? (
         <div>
-          <ProjectsPage />
-          <ActivityCard activity={testActivity} onEdit={() => { }} />
-
-
-
+          {/* <ProjectsPage /> */}
+          <ActivitiesPage />
+          {/* <ActivityCard activity={testActivity} onEdit={() => { }} /> */}
         </div>
       ) : (
         <SignInSide />
