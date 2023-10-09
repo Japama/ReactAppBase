@@ -15,7 +15,7 @@ function ActivitiesPage() {
   return (
     <div className="items-center justify-center bg-gray-50">
       <div className='p-8 pt-auto text-3xl font-semibold text-gray-800'>
-      <h1>Activitys</h1>
+      <h1>Actividades</h1>
       </div>
       <ActivityList onSave={saveActivity} activities={Activities} />
       <ActivityListGrid4 onSave={saveActivity} activities={Activities} />
