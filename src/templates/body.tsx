@@ -9,21 +9,8 @@ import ActivitiesPage from '../activities/ActivitiesPage';
 function Body() {
   const { state, login, logout } = useAuth();
 
-  // Crea una actividad de prueba
-  const testActivity = new Activity({
-    _id: '1',
-    name: 'Actividad de prueba',
-    sport_id: 123,
-    category: 'Categoría de prueba',
-    description: 'Esta es una descripción de prueba',
-    multimedia_links: ['link1', 'link2'],
-    rating: 4.5,
-    tags: ['tag1', 'tag2'],
-    user_id: 456,
-  });
-
   return (
-    <div className=''>
+    <div className='bg-gray-50 pt-20'>
       {state.isLoggedIn ? (
         <div>
           {/* <ProjectsPage /> */}

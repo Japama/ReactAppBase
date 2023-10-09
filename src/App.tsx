@@ -15,7 +15,7 @@ function App() {
           <Header />
         </div>
         <div className='Body '>
-        <Body />
+          <Body />
         </div>
         <div className='Footer'>
           <Footer />
