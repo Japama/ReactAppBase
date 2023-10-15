@@ -16,7 +16,7 @@ function ActivityListGrid4({ activities, onSave }: ActivityListProps) {
         setActivityBeingEdited({});
     };
     const items = activities.map(activity => (
-        <div key={activity._id} className="w-full md:w-1/2 lg:w-1/3 xl:w-1/4">
+        <div key={activity._id} className="md:w-1/2 lg:w-1/3 xl:w-3/4">
             {activity === activityBeingEdited ? (
                 <div></div>
                 // <ActivityForm
