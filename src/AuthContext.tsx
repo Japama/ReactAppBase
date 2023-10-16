@@ -43,34 +43,36 @@ const AuthContext = createContext<{
 } | undefined>(undefined);
 
 // Proveedor de autenticación
-// Proveedor de autenticación
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, initialState);
 
 
   const login = async (formData: LoginForm) => {
-    try {
-      const response = await fetch('http://localhost:8081/api/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+    console.log(state.isLoggedIn)
+    if(!state.isLoggedIn){
+      try {
+        const response = await fetch('http://localhost:8081/api/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        });
 
-      if (response.ok) {
-        // Lógica de inicio de sesión exitoso aquí
-        // Puedes actualizar el estado del usuario autenticado, por ejemplo
-        dispatch({ type: 'LOGIN', username: formData.username });
-      } else {
-        // Lógica para manejar un inicio de sesión fallido
-        console.error('Inicio de sesión fallido');
+        if (response.ok) {
+          // Lógica de inicio de sesión exitoso aquí
+          // Puedes actualizar el estado del usuario autenticado, por ejemplo
+          dispatch({ type: 'LOGIN', username: formData.username });
+        } else {
+          // Lógica para manejar un inicio de sesión fallido
+          console.error('Inicio de sesión fallido');
+          dispatch({ type: 'LOGOUT' }); // O cualquier otra lógica que necesites
+        }
+      } catch (error) {
+        // Lógica para manejar errores de red u otros errores
+        console.error('Error al iniciar sesión', error);
         dispatch({ type: 'LOGOUT' }); // O cualquier otra lógica que necesites
       }
-    } catch (error) {
-      // Lógica para manejar errores de red u otros errores
-      console.error('Error al iniciar sesión', error);
-      dispatch({ type: 'LOGOUT' }); // O cualquier otra lógica que necesites
     }
   };
 
@@ -78,8 +80,6 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     let logoutForm : LogoutForm = {
       logoff: true
     };
-
-    console.log(logoutForm);
 
 
     const response = await fetch('http://localhost:8081/api/logoff', {

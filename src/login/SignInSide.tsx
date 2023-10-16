@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect  } from 'react';
 import { useAuth } from '../AuthContext'; // Asumiendo que tienes una función `useAuth` para obtener el contexto de autenticación
+import { useNavigate } from "react-router-dom";
 
 interface SignInData {
     username: string;
@@ -7,6 +8,7 @@ interface SignInData {
 }
 
 export default function SignInSide() {
+    // const authState = useAuth().state;
     const { login } = useAuth(); // Obtén la función de inicio de sesión del contexto de autenticación
     const [formData, setFormData] = useState<SignInData>({
         username: '',
@@ -20,18 +22,32 @@ export default function SignInSide() {
         const { name, value } = event.target;
         setFormData({ ...formData, [name]: value });
     };
+    const navigate = useNavigate();
+
+    async function doLogin() {
+        try {
+            const response = await login(formData); // Llama a la función de inicio de sesión del contexto
+
+            // Realiza cualquier lógica adicional después del inicio de sesión exitoso
+            navigate("/projects");
+        } catch (error) {
+            // Lógica para manejar errores
+        }
+    }
 
     const handleSubmit = async (event: React.FormEvent): Promise<void> => {
         event.preventDefault();
-
-        try {
-            const response = await login(formData); // Llama a la función de inicio de sesión del contexto
-      
-            // Realiza cualquier lógica adicional después del inicio de sesión exitoso
-          } catch (error) {
-            // Lógica para manejar errores
-          }
+        await doLogin();
     };
+
+    useEffect(() => {
+        const fetchData = async () => {
+            console.log('¡La página de login se ha cargado!');
+            await doLogin();
+        };
+
+        fetchData();
+    }, []); // El array vacío [] significa que este efecto se ejecutará una vez, justo después de que el componente se monte.
 
     return (
         <div className="relative flex h-full w-full">
