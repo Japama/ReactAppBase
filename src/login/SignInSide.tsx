@@ -50,14 +50,18 @@ export default function SignInSide() {
                         </fieldset>
                     </div>
                     <div className="mt-10">
-                        <form>
+                        <form onSubmit={handleSubmit}>
                             <div>
-                                <label className="mb-2.5 block font-extrabold" htmlFor="email">Email</label>
-                                <input type="email" id="email" className="inline-block w-full rounded-full bg-white p-2.5 leading-none text-black placeholder-indigo-900 shadow placeholder:opacity-30" placeholder="mail@user.com" />
+                                <label className="mb-2.5 block font-extrabold" htmlFor="username">Username</label>
+                                <input type="text" id="username" name="username" className="inline-block w-full rounded-full bg-white p-2.5 leading-none text-black placeholder-indigo-900 shadow placeholder:opacity-30" placeholder="username" onChange={handleChange}  />
                             </div>
+                            {/*<div>*/}
+                            {/*    <label className="mb-2.5 block font-extrabold" htmlFor="email">Email</label>*/}
+                            {/*    <input type="email" id="email" className="inline-block w-full rounded-full bg-white p-2.5 leading-none text-black placeholder-indigo-900 shadow placeholder:opacity-30" placeholder="mail@user.com" />*/}
+                            {/*</div>*/}
                             <div className="mt-4">
-                                <label className="mb-2.5 block font-extrabold" htmlFor="email">Password</label>
-                                <input type="password" id="email" className="inline-block w-full rounded-full bg-white p-2.5 leading-none text-black placeholder-indigo-900 shadow" />
+                                <label className="mb-2.5 block font-extrabold" htmlFor="pwd">Password</label>
+                                <input type="password" id="pwd" name="pwd"  className="inline-block w-full rounded-full bg-white p-2.5 leading-none text-black placeholder-indigo-900 shadow" onChange={handleChange}  />
                             </div>
                             <div className="mt-4 flex w-full flex-col justify-between sm:flex-row">
                                 <div><input type="checkbox" id="remember" /><label htmlFor="remember" className="mx-2 text-sm">Remember me</label></div>
