@@ -29,7 +29,7 @@ export default function SignInSide() {
             const response = await login(formData); // Llama a la función de inicio de sesión del contexto
 
             // Realiza cualquier lógica adicional después del inicio de sesión exitoso
-            navigate("/projects");
+            navigate("/activities");
         } catch (error) {
             // Lógica para manejar errores
         }

@@ -10,16 +10,16 @@ import Body from './templates/body';
 function App() {
   return (
     <AuthProvider>
-      <div className="flex flex-col h-screen App">
+      <div className="flex flex-col h-screen App bg-gray-50">
         <div className='Header'>
           <Header />
         </div>
-        <div className='Body '>
+        <div className='Body min-w-min'>
           <Body />
         </div>
-        <div className='Footer'>
-          <Footer />
-        </div>
+        {/*<div className='Footer w-screen'>*/}
+        {/*  <Footer />*/}
+        {/*</div>*/}
       </div>
     </AuthProvider>
   );

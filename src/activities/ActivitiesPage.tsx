@@ -18,7 +18,7 @@ function ActivitiesPage() {
       <h1>Actividades</h1>
       </div>
       <ActivityList onSave={saveActivity} activities={Activities} />
-      <ActivityListGrid4 onSave={saveActivity} activities={Activities} />
+      {/*<ActivityListGrid4 onSave={saveActivity} activities={Activities} />*/}
     </div>
   );
 }

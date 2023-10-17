@@ -29,7 +29,7 @@ function ActivityList({ activities, onSave }: ActivityListProps) {
             )}
         </div>
     ));
-    return <div className="flex flex-wrap justify-center items-center gap-8 mb-20 p-4">{items}</div>;
+    return <div className="flex flex-wrap justify-center items-center gap-8 p-4">{items}</div>;
 
 }
 
