@@ -1,6 +1,7 @@
 import React, { useState, useEffect  } from 'react';
-import { useAuth } from '../AuthContext'; // Asumiendo que tienes una función `useAuth` para obtener el contexto de autenticación
+import { useAuth} from '../AuthContext'; // Asumiendo que tienes una función `useAuth` para obtener el contexto de autenticación
 import { useNavigate } from "react-router-dom";
+import Cookies from 'js-cookie';
 
 interface SignInData {
     username: string;
@@ -27,10 +28,11 @@ export default function SignInSide() {
     async function doLogin() {
         try {
             const response = await login(formData); // Llama a la función de inicio de sesión del contexto
-
             // Realiza cualquier lógica adicional después del inicio de sesión exitoso
+            Cookies.set('loged_in', 'true', { expires: 1/24 }); // La cookie expira en 1 hora
             navigate("/activities");
         } catch (error) {
+            console.log("Fallo");
             // Lógica para manejar errores
         }
     }
@@ -42,29 +44,31 @@ export default function SignInSide() {
 
     useEffect(() => {
         const fetchData = async () => {
-            console.log('¡La página de login se ha cargado!');
-            await doLogin();
+            const miCookie = Cookies.get('loged_in');
+            if(miCookie === "true") {
+                navigate("/activities");
+            }
         };
 
         fetchData();
     }, []); // El array vacío [] significa que este efecto se ejecutará una vez, justo después de que el componente se monte.
 
     return (
-        <div className="relative flex h-full w-full">
-            <div className="h-screen w-screen xl:w-1/2 bg-black">
+        <div className="relative flex w-full pt-20 xl:pt-0  h-screen">
+            <div className="w-full bg-black">
                 <div className="mx-auto flex h-full w-2/3 flex-col justify-center text-white xl:w-1/2">
                     <div>
                         <p className="text-2xl">Login|</p>
                         <p>please login to continue|</p>
                     </div>
-                    <div className="my-6">
-                        <button className="flex w-full justify-center rounded-3xl border-none bg-white p-1 text-black hover:bg-gray-200 sm:p-2"><img src="https://freesvg.org/img/1534129544.png" className="mr-2 w-6 object-fill" />Sign in with Google</button>
-                    </div>
-                    <div>
-                        <fieldset className="border-t border-solid border-gray-600">
-                            <legend className="mx-auto px-2 text-center text-sm">Or login via our secure system</legend>
-                        </fieldset>
-                    </div>
+                    {/*<div className="my-6">*/}
+                    {/*    <button className="flex w-full justify-center rounded-3xl border-none bg-white p-1 text-black hover:bg-gray-200 sm:p-2"><img src="https://freesvg.org/img/1534129544.png" className="mr-2 w-6 object-fill" />Sign in with Google</button>*/}
+                    {/*</div>*/}
+                    {/*<div>*/}
+                    {/*    <fieldset className="border-t border-solid border-gray-600">*/}
+                    {/*        <legend className="mx-auto px-2 text-center text-sm">Or login via our secure system</legend>*/}
+                    {/*    </fieldset>*/}
+                    {/*</div>*/}
                     <div className="mt-10">
                         <form onSubmit={handleSubmit}>
                             <div>
@@ -92,9 +96,9 @@ export default function SignInSide() {
                     </div>
                 </div>
             </div>
-            <div className="h-screen w-1/2 bg-blue-600 hidden xl:flex">
-                <img src="https://images.pexels.com/photos/2523959/pexels-photo-2523959.jpeg" className="h-full w-full" />
-            </div>
+            {/*<div className="h-screen w-1/2 bg-blue-600 hidden xl:flex">*/}
+            {/*    <img src="https://images.pexels.com/photos/2523959/pexels-photo-2523959.jpeg" className="h-full w-full" />*/}
+            {/*</div>*/}
         </div>
         // <div className="flex items-center justify-center bg-gray-50 min-h-screen">
         //     <div className="max-w-md w-full space-y-8 p-4">

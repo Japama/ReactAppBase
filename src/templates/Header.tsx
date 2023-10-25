@@ -1,9 +1,11 @@
 import React from 'react';
 import { useAuth } from '../AuthContext';
-import SignInSide from '../login/SignInSide';
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
 function Header() {
   const { state, login, logout } = useAuth();
+  const navigate = useNavigate();
 
   const logoutMethod = async (): Promise<void> => {
 
@@ -11,6 +13,8 @@ function Header() {
       const response = await logout(); // Llama a la función de inicio de sesión del contexto
 
       // Realiza cualquier lógica adicional después del inicio de sesión exitoso
+      Cookies.set('loged_in', 'false', { expires: 1/24 }); // La cookie expira en 1
+      navigate("/login");
     } catch (error) {
       // Lógica para manejar errores
     }
@@ -21,7 +25,7 @@ function Header() {
   };
 
   return (
-      <nav className="flex items-center justify-between flex-wrap bg-gray-800 p-6 fixed w-full z-10 top-0">
+      <nav className="flex items-center justify-between flex-wrap bg-gray-800 p-6 fixed w-full z-10 top-0 h-24">
         <div className="flex items-center flex-shrink-0 text-white mr-6">
           <a className="text-white no-underline hover:text-white hover:no-underline" href="#">
             <span className="text-2xl pl-2"><i className="em em-grinning"></i> El manual de los deportes</span>
@@ -52,8 +56,15 @@ function Header() {
                  href="#">link</a>
             </li>
             <li className="mr-3">
+              {/*<a className="inline-block text-gray-600 no-underline hover:text-gray-200 hover:text-underline py-2 px-4"*/}
+              {/*   href="#">{state.username}</a>*/}
               <a className="inline-block text-gray-600 no-underline hover:text-gray-200 hover:text-underline py-2 px-4"
-                 href="#">link</a>
+                 href="#" onClick={() => { handleClick(); }}
+              >
+                {state.username}
+                <p></p>
+                Logout
+              </a>
             </li>
           </ul>
         </div>
