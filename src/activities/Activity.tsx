@@ -6,6 +6,7 @@ export class Activity {
     description: string = '';
     multimedia_links: string[] = [];
     rating: number = 0;
+    reviews: number = 0;
     tags: string[] = [];
     user_id: number = 0;
   
@@ -22,6 +23,7 @@ export class Activity {
       if (initializer.description) this.description = initializer.description;
       if (initializer.multimedia_links) this.multimedia_links = initializer.multimedia_links;
       if (initializer.rating) this.rating = initializer.rating;
+      if (initializer.reviews) this.reviews = initializer.reviews;
       if (initializer.tags) this.tags = initializer.tags;
       if (initializer.user_id) this.user_id = initializer.user_id;
     }

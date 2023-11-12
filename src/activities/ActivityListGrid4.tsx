@@ -7,7 +7,7 @@ interface ActivityListProps {
     onSave: (activity: Activity) => void;
 }
 
-function ActivityList({ activities, onSave }: ActivityListProps) {
+function ActivityListGrid4({ activities, onSave }: ActivityListProps) {
     const [activityBeingEdited, setActivityBeingEdited] = useState({});
     const handleEdit = (activity: Activity) => {
         setActivityBeingEdited(activity);
@@ -16,7 +16,7 @@ function ActivityList({ activities, onSave }: ActivityListProps) {
         setActivityBeingEdited({});
     };
     const items = activities.map(activity => (
-        <div key={activity._id} className="w-full">
+        <div key={activity._id} className="md:w-1/2 lg:w-1/3 xl:w-3/4">
             {activity === activityBeingEdited ? (
                 <div></div>
                 // <ActivityForm
@@ -29,8 +29,8 @@ function ActivityList({ activities, onSave }: ActivityListProps) {
             )}
         </div>
     ));
-    return <div className="flex flex-wrap justify-center items-center gap-8 p-4">{items}</div>;
+    return <div className="flex flex-wrap justify-center items-center gap-8 mb-20">{items}</div>;
 
 }
 
-export default ActivityList;
+export default ActivityListGrid4;
